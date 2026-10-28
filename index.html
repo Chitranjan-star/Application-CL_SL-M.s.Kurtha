@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CL / SL आवेदन – म.वि. कुर्था</title>
+<link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Hindi&family=Noto+Sans+Devanagari:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3f1ec;--panel:#fff;--ink:#1d2a2f;--mute:#5d6b70;--line:#d6d2c8;--accent:#1f5f5b;--accent-ink:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14191b;--panel:#1d2528;--ink:#e8ecec;--mute:#9aa8ab;--line:#33403f;--accent:#5fb3ab;--accent-ink:#0d1a19}}
+:root[data-theme="dark"]{--bg:#14191b;--panel:#1d2528;--ink:#e8ecec;--mute:#9aa8ab;--line:#33403f;--accent:#5fb3ab;--accent-ink:#0d1a19}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans Devanagari",system-ui,sans-serif;line-height:1.6}
+.wrap{max-width:1000px;margin:0 auto;padding:16px;display:grid;gap:18px;grid-template-columns:minmax(0,340px) minmax(0,1fr);align-items:start}
+@media (max-width:760px){.wrap{grid-template-columns:1fr}}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px}
+h1{font-size:1.1rem;margin:0 0 12px}
+label{display:block;font-size:.85rem;color:var(--mute);margin:10px 0 3px}
+input,textarea{width:100%;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 10px}
+input:focus-visible,textarea:focus-visible,button:focus-visible,.seg label:focus-within{outline:2px solid var(--accent);outline-offset:1px}
+textarea{min-height:64px;resize:vertical}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.seg label{margin:0;border:1px solid var(--line);border-radius:6px;padding:8px;text-align:center;color:var(--ink);cursor:pointer}
+.seg input{position:absolute;opacity:0;width:0}
+.seg input:checked+span{font-weight:600;color:var(--accent)}
+.seg label:has(input:checked){border-color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,transparent)}
+.chk{display:flex;gap:8px;align-items:center;color:var(--ink);font-size:.95rem}
+.chk input{width:auto}
+.btns{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+button{font:inherit;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:6px;padding:9px 14px;cursor:pointer}
+button.main{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:600}
+.paperbox{overflow-x:auto}
+.paper{background:#fff;color:#111;width:100%;max-width:210mm;min-height:200mm;margin:0 auto;padding:18mm 18mm 14mm;font-family:"Tiro Devanagari Hindi","Noto Sans Devanagari",serif;font-size:20px;line-height:1.9;border:1px solid var(--line)}
+.paper p{margin:0 0 10px}
+.paper .sub{text-align:left;font-weight:700;margin:0 0 10px}
+.paper .body{text-indent:2.2em;text-align:justify}
+.sig{margin:24px 0 0 auto;width:min(300px,100%);text-align:center;padding-left:3.75em}
+.sig img{display:block;max-height:56px;max-width:240px;margin:0 auto 2px}
+.sig .blank{height:34px}
+.sig img[hidden]{display:none}
+.sig{break-inside:avoid}
+@media screen and (max-width:760px){.paper{padding:22px 16px;font-size:18px}}
+@media print{
+ @page{size:A4;margin:0}
+ body{background:#fff}
+ .panel,.hide-print{display:none!important}
+ .wrap{display:block;padding:0;max-width:none}
+ .paperbox{overflow:visible}
+ .paper{border:0;max-width:none;width:210mm;min-height:0;padding:22mm 20mm 16mm!important;font-size:20px!important}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+ <div class="panel hide-print">
+  <h1>अवकाश आवेदन भरें</h1>
+  <div class="seg" role="radiogroup" aria-label="अवकाश का प्रकार">
+   <label><input type="radio" name="t" value="CL" checked><span>CL (आकस्मिक)</span></label>
+   <label><input type="radio" name="t" value="SL"><span>SL (विशेषावकाश)</span></label>
+  </div>
+  <label for="name">शिक्षक का नाम</label><input id="name" autocomplete="off">
+  <label for="desig">पदनाम</label><input id="desig" value="सहायक शिक्षक">
+  <label for="school">विद्यालय</label><input id="school" value="मध्य विद्यालय कुर्था">
+  <div class="row">
+   <div><label for="from">अवकाश प्रारंभ</label><input type="date" id="from"></div>
+   <div><label for="to">अवकाश समाप्त</label><input type="date" id="to"></div>
+  </div>
+  <label for="reason">कारण</label><textarea id="reason"></textarea>
+  <label for="adate">आवेदन की तिथि</label><input type="date" id="adate">
+  <div class="chk" id="medwrap" style="display:none;margin-top:10px"><input type="checkbox" id="med"><label for="med" style="margin:0;color:var(--ink)">चिकित्सा प्रमाण-पत्र संलग्न है</label></div>
+  <label for="sig">हस्ताक्षर अपलोड करें (फोटो)</label>
+  <input type="file" id="sig" accept="image/*">
+  <div class="btns">
+   <button class="main" id="print">प्रिंट / PDF सेव</button>
+   <button id="rmsig">हस्ताक्षर हटाएँ</button>
+  </div>
+ </div>
+
+ <div class="paperbox">
+  <div class="paper" id="paper">
+   <p style="margin-bottom:0">सेवा में,<br>श्रीमान प्रधानाध्यापक महोदय,<br><span id="o-school"></span></p>
+   <p class="sub" id="o-sub"></p>
+   <p>महोदय,</p>
+   <p class="body" id="o-body"></p>
+   <p class="body" id="o-end"></p>
+   <p style="margin-top:14px">इस कार्य के लिए मैं आपका सदा आभारी रहूँगा।</p>
+   <div class="sig">
+    <div>विश्वासभाजन,</div>
+    <div class="blank" id="o-blank"></div>
+    <img id="o-sig" alt="" hidden>
+    <div>नाम: <span id="o-name"></span></div>
+    <div>पदनाम: <span id="o-desig"></span></div>
+    <div>दिनांक: <span id="o-adate"></span></div>
+   </div>
+  </div>
+ </div>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const DEF={CL:"आवश्यक पारिवारिक कार्य",SL:"मासिक धर्म (माहवारी) संबंधी शारीरिक अस्वस्थता"};
+const LBL={CL:"आकस्मिक अवकाश (CL)",SL:"विशेषावकाश (SL)"};
+let touched=false, sigData="";
+const blank=n=>"_".repeat(n);
+const fmt=d=>{if(!d)return blank(10);const[y,m,dd]=d.split("-");return dd+"/"+m+"/"+y};
+const type=()=>document.querySelector('input[name=t]:checked').value;
+function days(){const a=$("from").value,b=$("to").value;if(!a||!b)return null;const n=Math.round((new Date(b)-new Date(a))/864e5)+1;return n>0?n:null}
+function render(){
+ const t=type(), name=$("name").value.trim()||blank(18), desig=$("desig").value.trim()||blank(12), school=$("school").value.trim()||blank(18);
+ const reason=$("reason").value.trim()||DEF[t];
+ const f=$("from").value,to=$("to").value,n=days();
+ let span;
+ if(f&&to&&f===to)span="दिनांक "+fmt(f)+" (एक दिन)";
+ else span="दिनांक "+fmt(f)+" से "+fmt(to)+" तक"+(n?" (कुल "+n+" दिन)":"");
+ $("o-school").textContent=school;
+ $("o-sub").textContent="विषय: "+LBL[t]+" हेतु आवेदन।";
+ $("o-body").textContent="सविनय निवेदन है कि मैं "+name+", "+desig+", "+school+" में कार्यरत हूँ। "+reason+" के कारण मुझे "+span+" अवकाश की आवश्यकता है।";
+ $("o-end").textContent="अतः श्रीमान् से विनम्र निवेदन है कि मुझे उक्त अवधि हेतु "+(t==="SL"?"नियमानुसार देय ":"")+LBL[t]+" स्वीकृत करने की कृपा करें।";
+ $("o-name").textContent=name;$("o-desig").textContent=desig;$("o-adate").textContent=fmt($("adate").value);
+ const im=$("o-sig");if(sigData){im.src=sigData;im.hidden=false;$("o-blank").hidden=true}else{im.hidden=true;$("o-blank").hidden=false}
+ try{localStorage.setItem("cl_sl_prof",JSON.stringify({n:$("name").value,d:$("desig").value,s:$("school").value,sig:sigData}))}catch(e){}
+}
+function setType(){$("medwrap").style.display="none";if(!touched)$("reason").value=DEF[type()];render()}
+document.querySelectorAll('input[name=t]').forEach(r=>r.addEventListener("change",setType));
+["name","desig","school","from","to","adate","med"].forEach(i=>$(i).addEventListener("input",render));
+$("reason").addEventListener("input",()=>{touched=true;render()});
+$("from").addEventListener("change",()=>{if(!$("to").value||$("to").value<$("from").value)$("to").value=$("from").value;render()});
+$("sig").addEventListener("change",e=>{
+ const file=e.target.files[0];if(!file)return;
+ const r=new FileReader();r.onload=()=>{sigData=r.result;render()};r.readAsDataURL(file);
+});
+$("rmsig").addEventListener("click",()=>{sigData="";$("sig").value="";render()});
+$("print").addEventListener("click",()=>window.print());
+(function init(){
+ const today=new Date();const iso=today.getFullYear()+"-"+String(today.getMonth()+1).padStart(2,"0")+"-"+String(today.getDate()).padStart(2,"0");
+ $("adate").value=iso;
+ try{const p=JSON.parse(localStorage.getItem("cl_sl_prof")||"null");if(p){$("name").value=p.n||"";if(p.d)$("desig").value=p.d;if(p.s)$("school").value=p.s;sigData=p.sig||""}}catch(e){}
+ setType();
+})();
+</script>
+</body>
+</html>
